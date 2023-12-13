@@ -16,13 +16,13 @@ const corsOptions = {
 app.use((request, response, next) => {
     response.header('Access-Control-Allow-Origin', '*')
     response.header('Acess-Control-Allow-Methods', 'GET')
-    app.use(cors(corsOptions))
+    app.use(cors(cors))
     
     next()
 })
 
 // 1º EndPoint - A função retorna os dados do cliente desejado.
-app.get('/cliente', corsOptions(), async function(request, response, next){
+app.get('/cliente', cors(), async function(request, response, next){
     let nomeCliente = request.query.nome
     let listaClientes = require('./modulo/data')
     let cliente = listaClientes.getClientes(nomeCliente)
@@ -36,7 +36,7 @@ app.get('/cliente', corsOptions(), async function(request, response, next){
     }
 })
 // 2º EndPoint - A função retorna todas as categorias.
-app.get('/categorias', corsOption(), async function(request, response, next){
+app.get('/categorias', cors(), async function(request, response, next){
     let listarCategorias = require('./modulo/data')
     let listaDeCategorias = listarCategorias.categoriasProdutos()
 
@@ -49,7 +49,7 @@ app.get('/categorias', corsOption(), async function(request, response, next){
     }
 })
 // 3º EndPoint - A função retorna os comentários dos clientes
-app.get('/comentarios', corsOptions(), async function(request, response, next){
+app.get('/comentarios', cors(), async function(request, response, next){
     let listarComentarios = require('./modulo/data')
     let listaDeComentarios = listarComentarios.getComentarioUsuarios()
 
@@ -63,7 +63,7 @@ app.get('/comentarios', corsOptions(), async function(request, response, next){
 }) 
 
 // 4º EndPoint - A função retorna todos os produtos da loja.
-app.get('/produto/', corsOptions(), async function(request, response, next){
+app.get('/produto/', cors(), async function(request, response, next){
     let estoqueProdutos = require('./modulo/data')
     let produtos = estoqueProdutos.getProdutos()
 
